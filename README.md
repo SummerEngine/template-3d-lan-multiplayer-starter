@@ -11,11 +11,11 @@ It is intended to preserve the original demo's look and behavior, with one delib
 - Shared networking lobby and multiplayer settings scripts
 - Shared `gdbot` player model stack
 - Original project theme, input map, fullscreen handler, and subwindow settings
-- `.godot` import metadata carried over from the source project
+- Import sidecars (`.import` files) carried over from the source project
 
 ## Run
 
-1. Open the folder in Godot.
+1. Open the folder in Summer Engine.
 2. Run the project.
 3. Click `Spawn Game Windows`.
 4. In one window press `Host`.
