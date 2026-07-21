@@ -1,0 +1,38 @@
+{
+  "id": "3d-lan-multiplayer-starter",
+  "version": "1.0.0",
+  "name": "3D Multiplayer Arena Starter",
+  "engineMinVersion": "0.5.43",
+  "entryScene": "res://networking/robot_war/robot_war.tscn",
+  "dimension": "3D",
+  "mechanics": [
+    "enet-multiplayer",
+    "multiplayer-spawner",
+    "multiplayer-synchronizer",
+    "host-and-join-by-ip",
+    "third-person-controller",
+    "knockback-combat",
+    "damage-percentage",
+    "local-two-window-testing",
+    "hud"
+  ],
+  "genres": [
+    "arena-brawler",
+    "party-game",
+    "action",
+    "multiplayer"
+  ],
+  "agentBrief": "A networked 3D arena brawler built on Godot's high-level multiplayer API (Godot 4.6, Forward+). Treat it as a WORKING NETWORKING REFERENCE, not a finished game. ENTRY SCENE: res://networking/robot_war/robot_war.tscn — a launcher Control with one button, 'Spawn Game Windows', which opens TWO Window nodes side by side in the same process so one machine can host and join for testing; this depends on window/subwindows/embed_subwindows=false in project.godot, so do not change that setting. NETWORKING (networking/common/multiplayer_settings.gd): ENetMultiplayerPeer; start_session() calls create_server(port, MAX_CLIENTS=10) or create_client(address, port); _ready() installs a per-viewport MultiplayerAPI via MultiplayerAPI.create_default_interface(), which is what lets two windows in one process hold independent peers; server_relay is false. JOINING IS MANUAL IP ENTRY — networking/common/lobby.gd has LineEdits for address (default 'localhost') and port (default 8910) plus a host/join toggle. THERE IS NO LAN DISCOVERY: no UDP broadcast, no PacketPeerUDP, no mDNS, no server browser anywhere in the repo, despite the repo name. Adding discovery means writing it. AUTHORITY MODEL — READ THIS BEFORE CHANGING COMBAT: it is CLIENT-AUTHORITATIVE per player, not host-authoritative. gdbot.gd::_enter_tree parses the node name as a peer id and calls set_multiplayer_authority(id) on its MultiplayerSynchronizer; _physics_process early-returns unless is_multiplayer_authority(), so each client simulates its own character and pushes the result out. The host validates nothing. There are exactly two RPCs in the repo: _register_player (any_peer, call_local) in multiplayer_settings.gd, and damage(origin) (any_peer, call_local) in gdbot.gd — damage is unvalidated, so any peer can damage any other peer. Moving to host authority means moving simulation and damage resolution behind is_server() checks. REPLICATION: gdbot.tscn has a MultiplayerSynchronizer with a SceneReplicationConfig replicating forward_speed, color, damage_amount, is_attacking, position and rotation (position/rotation flagged for spawn). velocity is NOT replicated and there is no interpolation, prediction or reconciliation — remote bodies snap to received transforms. SPAWNING: a MultiplayerSpawner in robot_war_window.tscn with NO _spawnable_scenes; it uses a custom spawn_function set in robot_war_window.gd that instantiates gdbot.tscn, names the node str(peer_id) (this naming is load-bearing for the authority assignment above) and randomizes the spawn position. Spawning is host-driven even though simulation is not. GAMEPLAY: a knockback arena — move forward/back, turn with the mouse, jump, hold attack to fire a RayCast3D that calls damage.rpc; damage_amount accumulates and scales knockback; falling below y = -1 resets damage and respawns. There is NO win condition, score, stock/lives, round logic or game over. The HUD (player_ui.tscn) hard-codes exactly TWO player slots even though the server accepts 10 — a third player will overwrite or overflow a slot. KNOWN BUGS: robot_war_window.gd::_on_player_removed looks up 'player_%s' % id but the spawner names nodes str(id), so it never finds the body and disconnected players are not cleaned up host-side; PlayerUI slots are never reset either. project.godot still carries a [dotnet] section with a stale third-party assembly_name and there are no C# files — it is vestigial. LICENSING: code MIT (Summer Engine), art CC-BY 4.0 requiring attribution to GDQuest; the bundled Montserrat / Open Sans / Source Code Pro fonts have their own upstream licenses that are NOT reproduced in the repo. CUSTOMIZE BY: building a real menu and join flow over lobby.tscn, adding a win condition and score, generalizing the 2-slot HUD, and — if the game needs to be fair — moving authority to the host before adding anything that matters competitively.",
+  "shipsProjectGodot": true,
+  "userFacing": {
+    "tagline": "A working Godot multiplayer setup: host, join, and knock each other around a 3D arena.",
+    "highlights": [
+      "ENet networking wired end to end: host, join by IP, spawn and replicate players",
+      "MultiplayerSpawner and MultiplayerSynchronizer set up as a reference you can copy",
+      "Two game windows launch side by side so you can test multiplayer on one machine",
+      "3D arena brawling with accumulating damage and scaling knockback",
+      "Per-player HUD with nickname, colour and damage readout",
+      "Connection panel with address, port, nickname and colour selection"
+    ]
+  }
+}
