@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1av8dpn3l2cn"]
 
 [ext_resource type="Script" path="res://networking/robot_war/player_ui.gd" id="1_t1ygp"]
-[ext_resource type="Texture2D" uid="uid://dp3ytfrbbvce6" path="res://networking/robot_war/assets/gdbot-portrait.png" id="2_t1d31"]
+[ext_resource type="Texture2D" path="res://networking/robot_war/assets/gdbot-portrait.png" id="2_t1d31"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4e234"]
 font_size = 48

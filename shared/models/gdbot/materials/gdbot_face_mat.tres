@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3]
 
 [ext_resource type="Shader" path="res://shared/models/shared/shaders/screen_shader.gdshader" id="1_e2dsf"]
-[ext_resource type="Texture2D" uid="uid://diovavdu1x8kw" path="res://shared/models/gdbot/texture/open.png" id="2_rkdwa"]
+[ext_resource type="Texture2D" path="res://shared/models/gdbot/texture/open.png" id="2_rkdwa"]
 
 [resource]
 render_priority = 0

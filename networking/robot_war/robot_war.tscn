@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwrcsode60t7m"]
 
-[ext_resource type="Script" uid="uid://ki0o4mt30p22" path="res://networking/robot_war/robot_war.gd" id="1_k07rl"]
+[ext_resource type="Script" path="res://networking/robot_war/robot_war.gd" id="1_k07rl"]
 
 [sub_resource type="Gradient" id="Gradient_m6v53"]
 colors = PackedColorArray(0.630525, 0.521397, 0.864113, 1, 0.367263, 0.123484, 0.586528, 1)
