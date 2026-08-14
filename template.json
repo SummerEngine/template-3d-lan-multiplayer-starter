@@ -1,6 +1,6 @@
 {
   "id": "3d-lan-multiplayer-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "3D Multiplayer Arena Starter",
   "engineMinVersion": "0.5.43",
   "entryScene": "res://networking/robot_war/robot_war.tscn",
